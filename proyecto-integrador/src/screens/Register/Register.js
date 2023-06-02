@@ -19,7 +19,7 @@ class Register extends Component {
     }
 
 
-    registrarUsuario(email,password, username, bio, foto){
+    registrarUsuario(email, password, username, bio, foto){
         auth.createUserWithEmailAndPassword(email,password)
 
         .then(data=>{
