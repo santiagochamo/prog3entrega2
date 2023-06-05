@@ -51,6 +51,9 @@ class FormRegister extends Component {
       </View>
     )
   }
+  <TouchableOpacity>
+        <Text style={styles.vamosAlLogin}>Ya estás regitrado? Vamos al Login</Text>   
+  </TouchableOpacity>
 }
 
 
@@ -72,6 +75,12 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'white'
+    }
+    vamosAlLogin: {
+        marginTop: 32,
+        backgroundColor:'#54d0e0',
+        padding: 10,
+        borderRadius: 20,
     }
 })
 
