@@ -7,8 +7,14 @@ class Profile extends Component {
     constructor(props){
         super(props)
         this.state = {
-            posts:[]
+            posts:[],
+            users:[]
         }
+    }
+    componentDidMount(){
+        db.collection('users').where('owner', '==', props.data.owner).onSnapshot(
+            
+        )
     }
     render() {
         return (

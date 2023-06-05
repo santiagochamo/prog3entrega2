@@ -3,7 +3,10 @@ import React, { Component } from 'react'
 import { auth } from '../firebase/config'
 
 class MyProfile extends Component {
-
+    constructor(props){
+        super(props)
+        this.state =
+{}    }
     logout(){
         auth.signOut()
         .then(resp => this.props.navigation.navigate('Login')) /*tenemos que pasarle las props de navegacion desde alguna screen */
