@@ -48,12 +48,13 @@ class FormRegister extends Component {
         <TouchableOpacity style={styles.btn} onPress={()=> this.props.navigation.navigate('Home')}>
             <Text>Estoy desde el componente FormRegister</Text>
         </TouchableOpacity>
-      </View>
+      
+       <TouchableOpacity>
+       <Text style={styles.vamosAlLogin}>Ya estás regitrado? Vamos al Login</Text>   
+        </TouchableOpacity>
+ </View>
     )
   }
-  <TouchableOpacity>
-        <Text style={styles.vamosAlLogin}>Ya estás regitrado? Vamos al Login</Text>   
-  </TouchableOpacity>
 }
 
 
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'white'
-    }
+    },
     vamosAlLogin: {
         marginTop: 32,
         backgroundColor:'#54d0e0',
