@@ -1,11 +1,28 @@
 import React, { Component } from 'react'
+import { Text, View } from 'react-native'
 
-export default class ProfileData extends Component {
+class ProfileData extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            username: '',
+            email: auth.currentUser.email,
+            bio:'',
+            foto:'',
+        }
+    }
+
     render() {
         return (
-            <div>
+            <View>
+                <Text>Nombre de usuario: {this.state.username}</Text>
+                <Text>Email: {this.state.email}</Text>
+                <Text>Biografía: {this.state.bio}</Text>
+                <Text>Foto de Perfil: {this.state.foto}</Text>
                 
-            </div>
+            </View>
         )
     }
 }
+
+export default ProfileData
