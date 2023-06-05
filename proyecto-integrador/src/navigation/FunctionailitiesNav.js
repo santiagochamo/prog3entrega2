@@ -3,26 +3,27 @@ import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-
+import Feed from "../screens/Feed/Feed"
+import Comments from "../screens/Comments/Comments"
 
 const Stack = createNativeStackNavigator()
 
-export default function FunctionalitiesNav() {
+function FunctionalitiesNav() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
 
         <Stack.Screen 
-        name='' 
-        component={}
+        name='Feed' 
+        component={Feed}
         options={{
           headerShown:false
         }}
         />
 
         <Stack.Screen 
-          name=''
-          component={}
+          name='Comments'
+          component={Comments}
           options={{
             headerShown:false
           }} 
@@ -39,3 +40,5 @@ export default function FunctionalitiesNav() {
     </NavigationContainer>    
   );
 }
+
+export default FunctionalitiesNav
