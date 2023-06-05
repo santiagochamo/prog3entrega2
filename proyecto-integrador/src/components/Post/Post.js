@@ -51,8 +51,8 @@ dislike(){
 
 borrarPosteo() {
     confirm('¿Querés borrar tu posteo?') ?
-    db.collection('posteos')
-        .doc(this.props.posteoData.id)
+    db.collection('posts')
+        .doc(this.props.postData.id)
         .delete()
         .catch(e => console.log(e))
     :
@@ -60,27 +60,35 @@ borrarPosteo() {
 }
 
 irAPerfil(){
-    //FALTA NAVEGAR HACIA EL PERFIL DEL USUARIO, A LA SCREEN (A SER CREADA)
+    if (this.props.postData.data.owner === auth.currentUser.email) {
+        this.props.navigation.navigate('MyProfile')
+    } else {
+        this.props.navigation.navigate('Profile', { email: this.props.postData.data.owner })
+    }
 }
 
 render() {
     return (
-        <View style = {styles.container}>
-
-                { this.props.posteoData.data.creador === auth.currentUser.email ?
-                    <View style={styles.borrar}>
+        <View style = {}>
+                
+                { 
+                 this.props.postData.data.owner === auth.currentUser.email ?
+                    <View style={}>
+                        <TouchableOpacity onPress={() => this.irAPerfil()}>
+                            <Text style = {}>{this.props.postData.data.owner} </Text>
+                        </TouchableOpacity>
                         <Text onPress={() => this.borrarPosteo()}>
                             <FontAwesome name="trash-o" size={24} color='black' />
                         </Text>
                     </View>
                     :
                     <TouchableOpacity onPress={() => this.irAPerfil()}>
-                        <Text style = {}>{this.props.posteoData.data.owner} </Text>
+                        <Text style = {}>{this.props.postData.data.owner} </Text>
                     </TouchableOpacity>
                 }
 
            
-            <Text > {this.props.posteoData.data.descripcion} </Text>
+            <Text > {this.props.postData.data.descripcion} </Text>
 
             <View style = {}>
 
