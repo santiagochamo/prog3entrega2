@@ -87,7 +87,11 @@ render() {
                     </TouchableOpacity>
                 }
 
-           
+            <Image
+                    style={}
+                    source={{ uri: this.props.posteoData.data.foto }}
+                    resizeMode='cover'
+            />
             <Text > {this.props.postData.data.descripcion} </Text>
 
             <View style = {}>

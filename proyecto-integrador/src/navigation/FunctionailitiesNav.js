@@ -29,13 +29,7 @@ function FunctionalitiesNav() {
           }} 
         />
 
-        <Stack.Screen 
-        name='HomeNav' 
-        component={}
-        options={{
-          headerShown:false
-        }}
-        />
+        
       </Stack.Navigator>
     </NavigationContainer>    
   );
