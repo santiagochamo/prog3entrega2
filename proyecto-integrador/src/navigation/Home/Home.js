@@ -14,23 +14,29 @@ export default function HomeNav() {
   return (
     <Tab.Navigator>
        <Tab.Screen
-        name='Feed'
+        name='FunctionalitiesNav'
         component={FunctionalitiesNav}
-        options={}
+        options={{
+          headerShown:false
+        }}
          
        
         />
         <Tab.Screen 
         name='NewPost' 
         component={NewPosts}
-        options={}
+        options={{
+          headerShown:false
+        }}
          
         
         />
         <Tab.Screen 
             name='MyProfile'
             component={MyProfile}
-            options={}
+            options={{
+              headerShown:false
+            }}
              
         />
     </Tab.Navigator>

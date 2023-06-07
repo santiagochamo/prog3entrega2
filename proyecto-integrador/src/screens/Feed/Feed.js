@@ -1,7 +1,7 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
-import { db } from '../firebase/config'
-import Posteos from '../components/Posteos'
+import { db } from '../../firebase/config'
+import Posteos from '../../components/Posteos/Posteos'
 
 
 //es un componente de clase --> ya que tenemos que recibir los posteos al inicio del ciclo de vida

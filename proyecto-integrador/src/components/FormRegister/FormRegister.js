@@ -1,6 +1,6 @@
 import { Text, View, TextInput, TouchableOpacity, StyleSheet } from 'react-native'
 import React, { Component } from 'react'
-import {auth} from '../firebase/config'
+import {auth} from '../../firebase/config'
 
 class FormRegister extends Component {
     constructor(){

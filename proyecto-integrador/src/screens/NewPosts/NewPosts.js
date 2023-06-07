@@ -1,6 +1,6 @@
-import { Text, View } from 'react-native'
+import { Text, View, StyleSheet,TextInput} from 'react-native'
 import React, { Component } from 'react'
-import CamaraPost from '../components/CamaraPost/CamaraPost'
+import CamaraPost from '../../components/CamaraPost/CamaraPost'
 import { auth, db } from '../../firebase/config'
 
 class NewPosts extends Component {

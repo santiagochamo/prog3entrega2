@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
-import { auth, db } from '../../firebase/config'
-import { Text, View, FlatList, StyleSheet } from 'react-native'
-import ProfileData from '../../components/ProfileData/ProfileData'
+import { db } from '../../firebase/config'
+import { Text, View, FlatList, StyleSheet, Image} from 'react-native'
 import Post from '../../components/Post/Post'
-import Posteos from '../../components/Post/Post'
+
 
 class Profile extends Component {
     constructor(props){

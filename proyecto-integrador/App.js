@@ -6,8 +6,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import HomeNav from './src/navigation/Home/Home';
-import Register from './src/screens/Register/Register';
-import Login from './src/screens/Login/Login';
+import FormRegister from './src/components/FormRegister/FormRegister';
+import FormLogin from './src/components/FormLogin/FormLogin';
 
 const Stack = createNativeStackNavigator()
 
@@ -17,16 +17,16 @@ export default function App() {
       <Stack.Navigator>
 
         <Stack.Screen 
-        name='Register' 
-        component={Register}
+        name='FormRegister' 
+        component={FormRegister}
         options={{
           headerShown:false
         }}
         />
 
         <Stack.Screen 
-          name='Login'
-          component={Login}
+          name='FormLogin'
+          component={FormLogin}
           options={{
             headerShown:false
           }} 

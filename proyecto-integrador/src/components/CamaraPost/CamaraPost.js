@@ -1,7 +1,7 @@
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native'
 import React, { Component } from 'react'
 import {Camera} from 'expo-camera'
-import {storage} from 'firebase-config'
+import {storage} from '../../firebase/config'
 
 class CamaraPost extends Component {
     constructor(props){

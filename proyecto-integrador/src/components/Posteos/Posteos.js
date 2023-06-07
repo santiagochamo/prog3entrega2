@@ -1,6 +1,6 @@
 import { View, Text, FlatList } from 'react-native'
 import React from 'react'
-import Post from './Post'
+import Post from '../Post/Post'
 
 export default function Posteos(props) { /*empleamos un componente funcional debido a que no tratamos con metodos ni ciclos de vida */
   return (

@@ -1,4 +1,4 @@
-import { Text} from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import React, { Component } from 'react'
 import  { db, auth } from '../../firebase/config'
 import firebase from 'firebase'
@@ -69,13 +69,13 @@ irAPerfil(){
 
 render() {
     return (
-        <View style = {}>
+        <View>
                 
                 { 
                  this.props.postData.data.owner === auth.currentUser.email ?
-                    <View style={}>
+                    <View >
                         <TouchableOpacity onPress={() => this.irAPerfil()}>
-                            <Text style = {}>{this.props.postData.data.owner} </Text>
+                            <Text>{this.props.postData.data.owner} </Text>
                         </TouchableOpacity>
                         <Text onPress={() => this.borrarPosteo()}>
                             <FontAwesome name="trash-o" size={24} color='black' />
@@ -83,20 +83,20 @@ render() {
                     </View>
                     :
                     <TouchableOpacity onPress={() => this.irAPerfil()}>
-                        <Text style = {}>{this.props.postData.data.owner} </Text>
+                        <Text>{this.props.postData.data.owner} </Text>
                     </TouchableOpacity>
                 }
 
             <Image
-                    style={}
+                    style={styles.img}
                     source={{ uri: this.props.posteoData.data.foto }}
                     resizeMode='cover'
             />
             <Text > {this.props.postData.data.descripcion} </Text>
 
-            <View style = {}>
+            <View >
 
-                <View style= {}>
+                <View >
                     {this.state.mipropioLike ?
                         <TouchableOpacity onPress={() => this.dislike()}>
                             <FontAwesome name="heart" size={24} color="red" />
@@ -106,7 +106,7 @@ render() {
                             <FontAwesome name="heart-o" size={24} color="red" />                      
                         </TouchableOpacity>
                     }
-                    <Text style= {}> Likes: {this.state.cantidaddelikesPosteo} </Text>
+                    <Text > Likes: {this.state.cantidaddelikesPosteo} </Text>
                 </View>
 
                 
@@ -120,9 +120,11 @@ render() {
 }
 }
 
-const styles = StyleSheet.create({
-
-})
+const styles  = StyleSheet.create({
+    img:{
+      height: 200
+    }
+  })
 
 /* <View style = {}>
 <TouchableOpacity onPress={() => this.props.navigation.navigate("Comments", { id: this.props.posteoData.id })}>
