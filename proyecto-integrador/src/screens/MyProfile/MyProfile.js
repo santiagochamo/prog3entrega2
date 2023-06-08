@@ -53,10 +53,10 @@ class MyProfile extends Component {
     return (
       <View>
         
-                <Text>Nombre de usuario {this.state.users.nombreUsuario}</Text>
-                <Text>Email {this.state.users.email}</Text>
-                <Text>Biografia {this.state.users.biografia}</Text>
-                <Text>Foto de perfil{this.state.users.foto}</Text>
+                <Text>Nombre de usuario {this.state.miUser.nombreUsuario}</Text>
+                <Text>Email {this.state.miUser.email}</Text>
+                <Text>Biografia {this.state.miUser.biografia}</Text>
+                <Text>Foto de perfil{this.state.miUser.foto}</Text>
                 <Text>Cantidad de posteos: {this.state.posts.length}</Text>
                 <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
                     data={this.state.posts} 

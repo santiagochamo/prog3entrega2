@@ -1,13 +1,13 @@
 
 
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from 'expo-status-bar'
+import { StyleSheet, Text, View } from 'react-native'
+import { NavigationContainer } from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
-import HomeNav from './src/navigation/Home/Home';
-import FormRegister from './src/components/FormRegister/FormRegister';
-import FormLogin from './src/components/FormLogin/FormLogin';
+import HomeNav from './src/navigation/Home/Home'
+import Register from './src/screens/Register/Register'
+import Login from './src/screens/Login/Login'
 
 const Stack = createNativeStackNavigator()
 
@@ -17,16 +17,16 @@ export default function App() {
       <Stack.Navigator>
 
         <Stack.Screen 
-        name='FormRegister' 
-        component={FormRegister}
+        name='Register' 
+        component={Register}
         options={{
           headerShown:false
         }}
         />
 
         <Stack.Screen 
-          name='FormLogin'
-          component={FormLogin}
+          name='Login'
+          component={Login}
           options={{
             headerShown:false
           }} 

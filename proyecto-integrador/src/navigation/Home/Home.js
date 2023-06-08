@@ -2,15 +2,15 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-
 import MyProfile from '../../screens/MyProfile/MyProfile'
-import NewPosts from '../../screens/NewPosts/NewPosts';
-import FunctionalitiesNav from '../FunctionailitiesNav';
+import NewPosts from '../../screens/NewPosts/NewPosts'
+import FunctionalitiesNav from '../FunctionailitiesNav'
 
 
 const Tab = createBottomTabNavigator()
 
-export default function HomeNav() {
+function HomeNav(){
+
   return (
     <Tab.Navigator>
        <Tab.Screen
@@ -42,3 +42,5 @@ export default function HomeNav() {
     </Tab.Navigator>
   )
 }
+
+export default HomeNav

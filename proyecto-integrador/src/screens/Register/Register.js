@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {auth, db} from '../../firebase/config'
-import FormRegister from '../../components/FormRegister/FormRegister';
+
 
 
 class Register extends Component {
 
-    contructor(props){
+    constructor(props){
         super(props)
         this.state={
             email:"",
@@ -18,12 +18,13 @@ class Register extends Component {
         }
 
     }
-
+/*remember me */
 
     registrarUsuario(email, password, username, bio, foto){
         auth.createUserWithEmailAndPassword(email,password)
 
         .then(data=>{
+            this.props.navigation.navigate('HomeNav')
             db.collection("users").add(
                 {
                     email: email,
@@ -41,7 +42,7 @@ class Register extends Component {
                     foto: "",
                     errors:"",
                 })
-                this.props.navigation.navigate("Login")
+                
             }).catch(err => console.log(err))
         })
         .catch(err => this.setState({
@@ -59,7 +60,7 @@ class Register extends Component {
                 <Text>Registrate aquí</Text>
                 <Text>{this.state.errors}</Text>
                 <TextInput 
-                    style={styles.email}
+                    style={styles.reg}
                     placeholder='Email'
                     keyboardType='email-address'
                     onChangeText={ (texto) => {
@@ -70,7 +71,7 @@ class Register extends Component {
                     value={this.state.email}
                 />
                 <TextInput 
-                    style={styles.password}
+                    style={styles.reg}
                     placeholder='Contraseña'
                     secureTextEntry={true}
                     onChangeText={ (texto) => {
@@ -81,7 +82,7 @@ class Register extends Component {
                     value={this.state.password}
                 />
                 <TextInput 
-                    style={styles.username}
+                    style={styles.reg}
                     placeholder='Nombre de usuario'
                     keyboardType='default'
                     onChangeText={ (texto) => {
@@ -92,7 +93,7 @@ class Register extends Component {
                     value={this.state.username}
                 />
                 <TextInput 
-                    style={styles.foto}
+                    style={styles.reg}
                     placeholder='Foto'
                     keyboardType='default'
                     onChangeText={ (texto) => {
@@ -103,7 +104,7 @@ class Register extends Component {
                     value={this.state.foto}
                 />
                 <TextInput 
-                    style={styles.bio}
+                    style={styles.reg}
                     placeholder='Biografia'
                     keyboardType='default'
                     onChangeText={ (texto) => {
@@ -127,12 +128,36 @@ class Register extends Component {
             </TouchableOpacity>
 
         }
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
+            <Text>Ya estas registrado? Logueate</Text>
+        </TouchableOpacity>
+        
+
+        
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
+    reg: {
+        borderWidth:1,
+        borderColor:'#3d3d3d',
+        marginTop: 24,
+        height: 24,
+        padding: 5
+    },
+    btn: {
+        marginTop: 32,
+        backgroundColor:'#54d0e0',
+        padding: 10,
+        borderRadius: 20,
+    },
+    btnText: {
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: 'white'
+    },
     email:{
 
     },
