@@ -3,17 +3,27 @@ import React, { Component } from 'react'
 import {auth} from '../../firebase/config'
 
 class FormRegister extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state = {
             inputMail: '',
-            inputPassword: ''
+            inputPassword: '',
+            inputUsername: '',
         }
     }
 
+    
     registrarUsuario(mail, password, username){
         auth.createUserWithEmailAndPassword(mail, password, username)
-        .then(data => console.log(data))
+        .then( data => {
+            this.props.navigation.navigate('HomeNav')
+            db.collection('users').add({
+                owner:auth.currentUser.email,
+                createdAt: Date.now()
+            })
+            .then(resp => console.log(resp))
+            .catch(err => console.log(err))
+        })
         .catch(err => console.log(err))
     }
 
@@ -37,19 +47,15 @@ class FormRegister extends Component {
         <TextInput
             style={styles.reg}
             placeholder='Digita tu username'
-            onChangeText={(text)=>this.setState({input: text})}
-            value={this.state.input}
+            onChangeText={(text)=>this.setState({inputUsername: text})}
+            value={this.state.inputUsername}
         />
-        <TouchableOpacity>
-            style={styles.btn}
-            onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword, this.state.input)}
-            <Text style={styles.btnText}>Registrar mi usuario</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={()=> this.props.navigation.navigate('Home')}>
-            <Text>Estoy desde el componente FormRegister</Text>
+       
+        <TouchableOpacity style={styles.btn} onPress={()=> this.registrarUsuario(this.state.inputMail, this.state.inputPassword, this.state.inputUsername)}>
+            <Text>Registrarme</Text>
         </TouchableOpacity>
       
-       <TouchableOpacity>
+       <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
        <Text style={styles.vamosAlLogin}>Ya estás regitrado? Vamos al Login</Text>   
         </TouchableOpacity>
  </View>

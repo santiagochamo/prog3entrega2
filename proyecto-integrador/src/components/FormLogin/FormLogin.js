@@ -13,7 +13,7 @@ export default class FormLogin extends Component {
 
     logIn(mail, password){
         auth.signInWithEmailAndPassword(mail, password)
-        .then(data => console.log(data))
+        .then(resp => this.props.navigation.navigate('HomeNav'))
         .catch(err => console.log(err))
     }
 
@@ -34,13 +34,9 @@ export default class FormLogin extends Component {
             value={this.state.inputPassword}
             secureTextEntry={true}
         />
-        <TouchableOpacity>
-            style={styles.btn}
-            onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}
-            <Text style={styles.btnText}>Inicia sesión</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={()=> this.props.navigation.navigate('Home')}>
-            <Text>Estoy desde el componente FormLogin</Text>
+       
+        <TouchableOpacity style={styles.btn} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
+            <Text>Inicia Sesión</Text>
         </TouchableOpacity>
       </View>
     )
