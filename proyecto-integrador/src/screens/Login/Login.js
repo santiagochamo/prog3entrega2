@@ -64,5 +64,6 @@ const styles = StyleSheet.create({
         color: 'white'
     }
 })
+//boton para ir al regitro
 
 export default Login
