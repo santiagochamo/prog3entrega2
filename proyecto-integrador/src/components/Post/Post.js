@@ -2,6 +2,7 @@ import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
 import React, { Component } from 'react'
 import  { db, auth } from '../../firebase/config'
 import firebase from 'firebase'
+import {FontAwesome} from '@expo/vector-icons'
 
 
 
@@ -31,8 +32,9 @@ like(){
         likes: firebase.firestore.FieldValue.arrayUnion(auth.currentUser.email)
     })
     .then(() => this.setState({
+        
+        cantidaddelikesPosteo: this.state.cantidaddelikesPosteo + 1,
         mipropiolike: true,
-        cantidaddelikesPosteo: this.state.cantidaddelikesPosteo + 1
     }))
     .catch((err) => console.log(err))
 }
@@ -42,8 +44,9 @@ dislike(){
         likes: firebase.firestore.FieldValue.arrayRemove(auth.currentUser.email)
     })
     .then(() => this.setState({
+        
+        cantidaddelikesPosteo: this.state.cantidaddelikesPosteo - 1,
         mipropiolike: false,
-        cantidaddelikesPosteo: this.state.cantidaddelikesPosteo - 1
     }))
     .catch((err) => console.log(err))
 }
@@ -60,10 +63,10 @@ borrarPosteo() {
 }
 
 irAPerfil(){
-    if (this.props.postData.data.owner === auth.currentUser.email) {
+    if (this.props.postData.data.email === auth.currentUser.email) {
         this.props.navigation.navigate('MyProfile')
     } else {
-        this.props.navigation.navigate('Profile', { email: this.props.postData.data.owner })
+        this.props.navigation.navigate('Profile', { owner: this.props.postData.data.email })
     }
 }
 
@@ -72,10 +75,10 @@ render() {
         <View>
                 
                 { 
-                 this.props.postData.data.owner === auth.currentUser.email ?
+                 this.props.postData.data.email === auth.currentUser.email ?
                     <View >
                         <TouchableOpacity onPress={() => this.irAPerfil()}>
-                            <Text>{this.props.postData.data.owner} </Text>
+                            <Text>{this.props.postData.data.email} </Text>
                         </TouchableOpacity>
                         <Text onPress={() => this.borrarPosteo()}>
                             <FontAwesome name="trash-o" size={24} color='black' />
@@ -83,13 +86,13 @@ render() {
                     </View>
                     :
                     <TouchableOpacity onPress={() => this.irAPerfil()}>
-                        <Text>{this.props.postData.data.owner} </Text>
+                        <Text>{this.props.postData.data.email} </Text>
                     </TouchableOpacity>
                 }
 
             <Image
                     style={styles.img}
-                    source={{ uri: this.props.posteoData.data.foto }}
+                    source={{ uri: this.props.postData.data.foto }}
                     resizeMode='cover'
             />
             <Text > {this.props.postData.data.descripcion} </Text>
@@ -97,7 +100,7 @@ render() {
             <View >
 
                 <View >
-                    {this.state.mipropioLike ?
+                    {this.state.mipropiolike ?
                         <TouchableOpacity onPress={() => this.dislike()}>
                             <FontAwesome name="heart" size={24} color="red" />
                         </TouchableOpacity>

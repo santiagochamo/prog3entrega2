@@ -2,7 +2,7 @@ import { Text, View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import React, { Component } from 'react'
 import CamaraPost from '../../components/CamaraPost/CamaraPost'
 import { auth, db } from '../../firebase/config'
-
+import {FontAwesome} from '@expo/vector-icons'
 class NewPosts extends Component {
     constructor(props){
         super(props)
@@ -11,7 +11,7 @@ class NewPosts extends Component {
             foto: '',
             likes: [],
             comentarios: [],
-            mostrarCamara: true,
+            mostrarCamara: false,
         }
     }
 
@@ -23,7 +23,7 @@ postear(){
         foto: this.state.foto,
         descripcion: this.state.descripcion, 
         likes: this.state.likes, 
-        comentarios: this.state.comments,
+        comentarios: this.state.comentarios,
         created: Date.now()
     })
     .then(()=>
@@ -33,7 +33,7 @@ postear(){
         likes: [],
         comentarios: []
     }))
-    this.props.navigation.navigate("Feed")
+    this.props.navigation.navigate('FunctionalitiesNav')
 }
 
 onImageUpload(url){
@@ -48,37 +48,40 @@ onImageUpload(url){
     return (
       <View>
         <Text>Create tu posteo</Text>
-
-        {
-            this.state.mostrarCamara ? 
-
-           <CamaraPost onImageUpload={url=>this.onImageUpload(url)}/> /*a desarrollar el componente de camara*/
-            :
         <View>
+            {
+                
+                this.state.mostrarCamara ? 
 
-                <TextInput 
-                   
-                    placeholder='AGREGA UNA DESCRIPCION'
-                    keyboardType='default'
-                    onChangeText={ (texto) => {
-                        this.setState({
-                            descripcion: texto
-                        })
-                    }}
-                    value={this.state.descripcion}
-                />
+            <CamaraPost onImageUpload={url=>this.onImageUpload(url)}/> /*a desarrollar el componente de camara*/
+                :
+            <View>
+                <View>
+                    <TextInput 
+                    
+                        placeholder='AGREGA UNA DESCRIPCION'
+                        keyboardType='default'
+                        onChangeText={ (texto) => {
+                            this.setState({
+                                descripcion: texto
+                            })
+                        }}
+                        value={this.state.descripcion}
+                    />
+                
+                    <TouchableOpacity onPress={() => this.postear()}>
+                        <Text>Hace tu posteo</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
 
-                <TouchableOpacity onPress={() => this.postear()}>
-                    Hace tu posteo
-                </TouchableOpacity>
 
+
+
+
+            }
         </View>
-
-
-
-
-
-        }
+       
 
 
 

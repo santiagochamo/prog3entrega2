@@ -1,7 +1,7 @@
-import { Text, View } from 'react-native'
+import { Text, View, FlatList, StyleSheet} from 'react-native'
 import React, { Component } from 'react'
 import { db } from '../../firebase/config'
-import Posteos from '../../components/Posteos/Posteos'
+import Post from '../../components/Post/Post'
 
 
 //es un componente de clase --> ya que tenemos que recibir los posteos al inicio del ciclo de vida
@@ -10,7 +10,7 @@ import Posteos from '../../components/Posteos/Posteos'
     constructor(props){
         super(props)
         this.state = {
-            posts: []
+            posts: [],
         }
     }
     
@@ -31,14 +31,21 @@ import Posteos from '../../components/Posteos/Posteos'
     }
   render() {
     return (
-      <View>
+      <View style={styles.vista}>
         <Text>Feed</Text>
-        <Posteos
-            data={this.state.posts} /*por medio de la prop "data", le pasamos al componente de "Posteos" el estado con los posteos subidos al feed */ 
-        />
+        <FlatList
+        data={this.state.posts}     /*recibimos por props la info de los posteos subidos al feed*/
+        keyExtractor={(item)=> item.id.toString()} /*pasamos a string el id de cada uno de los posteos*/
+        renderItem={({ item }) => <Post postData={ item } /> }/*y por cada item (posteo) vamos a renderizar el componente Post, que por la prop data va a acceder a los atributos necesarios de el posteo especifico*/
+      />
       </View>
     )
   }
 }
 
+const styles = StyleSheet.create({
+  vista:{
+    flex: 1,
+  }
+})
 export default Feed

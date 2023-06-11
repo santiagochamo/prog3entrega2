@@ -13,7 +13,7 @@ class MyProfile extends Component {
     }
 
     componentDidMount(){
-        db.collection('users').where('owner', '==', auth.currentUser.email).onSnapshot(
+        db.collection('users').where('email', '==', auth.currentUser.email).onSnapshot(
             docs => {
                 let miUsuario = [];
                 docs.forEach( doc => {
@@ -23,12 +23,12 @@ class MyProfile extends Component {
                     })
                 })
                 this.setState({
-                    miUser: miUsuario
+                    miUser: miUsuario[0].data
                 })
             }
 
         )
-        db.collection('posts').where('owner', '==', auth.currentUser.email).onSnapshot(
+        db.collection('posts').where('email', '==', auth.currentUser.email).onSnapshot(
             docs => {
                 let posteos = [];
                 docs.forEach( doc => {
