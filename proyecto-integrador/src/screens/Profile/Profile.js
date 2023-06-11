@@ -13,7 +13,7 @@ class Profile extends Component {
         }
     }
     componentDidMount(){
-        db.collection('users').where('owner', '==', this.props.route.params.email).onSnapshot(
+        db.collection('users').where('email', '==', this.props.route.params.email).onSnapshot(
             docs => {
                 let usuarios = [];
                 docs.forEach( doc => {
@@ -50,10 +50,10 @@ class Profile extends Component {
         return (
             <View>
                  {
-                        this.state.usuario.foto !== '' ?
+                        this.state.users.foto !== '' ?
                             <Image
-                                style={}
-                                source={{ uri: this.state.usuario.foto }}
+                                style={styles.img}
+                                source={{ uri: this.state.users.foto }}
                                 resizeMode='contain'
                             />
                             :
@@ -61,7 +61,7 @@ class Profile extends Component {
 
                 }
                 {
-                    this.state.usuarios !== '' ?
+                    this.state.users !== '' ?
                <>
                 <Text>Nombre de usuario {this.state.users.nombreUsuario}</Text>
                 <Text>Email {this.state.users.email}</Text>
@@ -95,4 +95,9 @@ class Profile extends Component {
     }
 }
 
+const styles  = StyleSheet.create({
+    img:{
+      height: 200
+    }
+  })
 export default Profile

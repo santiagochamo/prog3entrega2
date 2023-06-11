@@ -63,10 +63,10 @@ borrarPosteo() {
 }
 
 irAPerfil(){
-    if (this.props.postData.data.email === auth.currentUser.email) {
+    if (this.props.postData.data.owner === auth.currentUser.email) {
         this.props.navigation.navigate('MyProfile')
     } else {
-        this.props.navigation.navigate('Profile', { owner: this.props.postData.data.email })
+        this.props.navigation.navigate('Profile', { owner: this.props.postData.data.owner })
     }
 }
 
@@ -75,10 +75,10 @@ render() {
         <View>
                 
                 { 
-                 this.props.postData.data.email === auth.currentUser.email ?
+                 this.props.postData.data.owner === auth.currentUser.email ?
                     <View >
                         <TouchableOpacity onPress={() => this.irAPerfil()}>
-                            <Text>{this.props.postData.data.email} </Text>
+                            <Text>{this.props.postData.data.owner} </Text>
                         </TouchableOpacity>
                         <Text onPress={() => this.borrarPosteo()}>
                             <FontAwesome name="trash-o" size={24} color='black' />
@@ -86,7 +86,7 @@ render() {
                     </View>
                     :
                     <TouchableOpacity onPress={() => this.irAPerfil()}>
-                        <Text>{this.props.postData.data.email} </Text>
+                        <Text>{this.props.postData.data.owner} </Text>
                     </TouchableOpacity>
                 }
 

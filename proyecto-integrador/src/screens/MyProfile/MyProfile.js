@@ -1,7 +1,7 @@
-
 import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
 import { Text, View, TouchableOpacity, FlatList } from 'react-native'
+import Post from '../../components/Post/Post'
 
 class MyProfile extends Component {
     constructor(props){
@@ -28,7 +28,7 @@ class MyProfile extends Component {
             }
 
         )
-        db.collection('posts').where('email', '==', auth.currentUser.email).onSnapshot(
+        db.collection('posts').where('owner', '==', auth.currentUser.email).onSnapshot(
             docs => {
                 let posteos = [];
                 docs.forEach( doc => {
