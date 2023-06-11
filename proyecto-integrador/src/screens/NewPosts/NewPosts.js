@@ -1,8 +1,10 @@
 import { Text, View, StyleSheet,TextInput, TouchableOpacity} from 'react-native'
 import React, { Component } from 'react'
 import CamaraPost from '../../components/CamaraPost/CamaraPost'
+import FormPost from '../../components/FormPost/FormPost'
 import { auth, db } from '../../firebase/config'
 import {FontAwesome} from '@expo/vector-icons'
+
 class NewPosts extends Component {
     constructor(props){
         super(props)
@@ -11,7 +13,7 @@ class NewPosts extends Component {
             foto: '',
             likes: [],
             comentarios: [],
-            mostrarCamara: false,
+            mostrarCamara: true,
         }
     }
 
@@ -36,55 +38,48 @@ postear(){
     this.props.navigation.navigate('FunctionalitiesNav')
 }
 
+actualizarDescripcionPosteo(text){
+    this.setState({
+        descripcion: text
+    })
+}
+
 onImageUpload(url){
     this.setState({
         foto:url,
-        mostrarCamara: false,
+        
     })
 }
 
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Create tu posteo</Text>
         <View>
             {
                 
-                this.state.mostrarCamara ? 
+                this.state.foto === '' ? 
 
-            <CamaraPost onImageUpload={url=>this.onImageUpload(url)}/> /*a desarrollar el componente de camara*/
+            <CamaraPost onImageUpload={(url)=>this.onImageUpload(url)}/> 
                 :
-            <View>
-                <View>
-                    <TextInput 
-                    
-                        placeholder='AGREGA UNA DESCRIPCION'
-                        keyboardType='default'
-                        onChangeText={ (texto) => {
-                            this.setState({
-                                descripcion: texto
-                            })
-                        }}
-                        value={this.state.descripcion}
-                    />
                 
-                    <TouchableOpacity onPress={() => this.postear()}>
+            <>
+            <FormPost descripcionPosteo={this.state.descripcion} actualizarDescripcionP={(text) => this.actualizarDescripcionPosteo(text)}/>
+    
+                
+                    <TouchableOpacity onPress={() => this.postear({
+                         descripcion:this.state.descripcion,
+                         foto:this.state.foto,
+                         likes: this.state.likes,
+                         comentarios:this.state.comentarios
+                    })}>
                         <Text>Hace tu posteo</Text>
                     </TouchableOpacity>
-                </View>
-            </View>
-
-
-
-
+             </>
 
             }
         </View>
-       
-
-
-
       </View>
     )
   }

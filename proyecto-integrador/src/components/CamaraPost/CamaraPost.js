@@ -12,16 +12,18 @@ class CamaraPost extends Component {
         }
         this.metodosCamara = null
     }
+
     componentDidMount(){
-        Camera.getCameraPermissionAsync()
+        Camera.requestCameraPermissionsAsync()
         .then (resp => this.setState({mostrarCamara: true}))
         .catch(err => console.log(err))
     }
+
     tomarFoto(){
-        this.metodosCamara.takePictureAsyn()
-        .then(fotoTomo => {
+        this.metodosCamara.takePictureAsync()
+        .then(fotoEnMemoria => {
             this.setState({
-                fotoTomada: fotoEnMemorio.uri,
+                fotoTomada: fotoEnMemoria.uri,
                 mostrarCamara: false
             })
         })
@@ -35,7 +37,7 @@ class CamaraPost extends Component {
             ref.put(imagen)
             .then(() => {
                 ref.getDownloadURL()
-                .then((url)=> this.props.actualizarEstadoFoto(url))
+                .then((url)=> this.props.onImageUpload(url))
             })
         })
         .catch(err => console.log(err))
@@ -52,18 +54,34 @@ class CamaraPost extends Component {
         {
             this.state.mostrarCamara && this.state.fotoTomada === '' ?
             <>
+            <View style={styles.cameraBody}>
             <Camera
             style={styles.camara}
             type={Camera.Constants.Type.back}
             ref={(metodosComponente) => this.metodosCamara = metodosComponente}
+            ratio='16:9'
             />
+            <TouchableOpacity
+                    onPress={()=> this.tomarFoto()}
+            >
+                        <Text>
+                            Tomar foto
+                        </Text>
+            </TouchableOpacity>
+            </View>
             </>
+
             :
+
             this.state.mostrarCamara === false && this.state.fotoTomada !== '' ?
             <>
-                <Image source={{uri: this.state.fotoTomada}} style={styles.img} />
+                <Image 
+                source={{uri: this.state.fotoTomada}} 
+                style={styles.img} />
+
                 <View>
-                    <TouchableOpacity onPress={()=> this.aceptarFoto()}>
+                    <TouchableOpacity 
+                    onPress={()=> this.aceptarFoto()}>
                         <Text>
                             Aceptar foto
                         </Text>
@@ -92,7 +110,11 @@ const styles = StyleSheet.create({
     },
     img:{
         flex: 1
-    }
+    },
+    cameraBody: {
+        height: '60vh',
+        width: '60vw',
+    },
 })
 
 export default CamaraPost
