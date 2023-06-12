@@ -6,6 +6,7 @@ import MyProfile from '../../screens/MyProfile/MyProfile'
 import NewPosts from '../../screens/NewPosts/NewPosts'
 import FunctionalitiesNav from '../FunctionailitiesNav'
 import Buscador from '../../screens/Buscador/Buscador'
+import { AntDesign } from '@expo/vector-icons';
 
 
 const Tab = createBottomTabNavigator()
@@ -15,10 +16,12 @@ function HomeNav(){
   return (
     <Tab.Navigator>
        <Tab.Screen
-        name='FunctionalitiesNav'
+        name='Feed'
         component={FunctionalitiesNav}
         options={{
-          headerShown:false
+          headerShown:false,
+          tabBarIcon: () => 
+            <AntDesign name='home' color='green' size={24} />
         }}
          
        
@@ -27,7 +30,9 @@ function HomeNav(){
         name='Buscador' 
         component={Buscador}
         options={{
-          headerShown:false
+          headerShown:false,
+          tabBarIcon: () => 
+            <AntDesign name="search1" color='grey' size={24} />
         }}
          
         
@@ -36,16 +41,20 @@ function HomeNav(){
         name='NewPost' 
         component={NewPosts}
         options={{
-          headerShown:false
+          headerShown:false,
+          tabBarIcon: () => 
+            <AntDesign name='plus' color='blue' size={24} />
         }}
          
         
         />
         <Tab.Screen 
-            name='MyProfile'
+            name='Perfil'
             component={MyProfile}
             options={{
-              headerShown:false
+              headerShown:false,
+              tabBarIcon: () => 
+            <AntDesign name='profile' color='red' size={24} />
             }}
              
         />
