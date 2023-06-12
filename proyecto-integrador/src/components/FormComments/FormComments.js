@@ -25,8 +25,7 @@ export default class FormComments extends Component {
     render() {
         return (
             <View>
-                <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments')}>
-                    <View>
+                <View>
                         <TextInput
                         style = {styles.input}
                         keyboardType = 'default'
@@ -37,7 +36,9 @@ export default class FormComments extends Component {
                         <TouchableOpacity onPress={()=>this.crearComentario(this.state.comentario)}>
                             <Text>Enviar</Text>
                         </TouchableOpacity>
-                    </View>
+                </View>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments')}>
+                    <Text>Todos los comentarios</Text>
                 </TouchableOpacity>
             </View>
         )
