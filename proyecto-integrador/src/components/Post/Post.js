@@ -66,7 +66,7 @@ irAPerfil(){
     if (this.props.postData.data.owner === auth.currentUser.email) {
         this.props.navigation.navigate('MyProfile')
     } else {
-        this.props.navigation.navigate('Profile', { owner: this.props.postData.data.owner })
+        this.props.navigation.navigate('Profile', { email: this.props.postData.data.owner })
     }
 }
 

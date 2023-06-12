@@ -61,11 +61,7 @@ buscar(texto){
 }
 const styles = StyleSheet.create({
   buscador: {
-      borderWidth:1,
-      borderColor:'#3d3d3d',
-      marginTop: 24,
-      height: 24,
-      padding: 5
+      flex: 1
   }
 })
 
