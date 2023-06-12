@@ -2,7 +2,7 @@ import { Text, View, FlatList, StyleSheet} from 'react-native'
 import React, { Component } from 'react'
 import { db } from '../../firebase/config'
 import Post from '../../components/Post/Post'
-import Buscador from "../../components/Buscador/Buscador"
+
 
 //es un componente de clase --> ya que tenemos que recibir los posteos al inicio del ciclo de vida
  class Feed extends Component {
@@ -32,7 +32,6 @@ import Buscador from "../../components/Buscador/Buscador"
   render() {
     return (
       <View style={styles.vista}>
-        <Buscador navigation = {this.props.navigation}/>
         <Text>Feed</Text>
         <FlatList
         data={this.state.posts}     /*recibimos por props la info de los posteos subidos al feed*/

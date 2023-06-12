@@ -5,6 +5,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import MyProfile from '../../screens/MyProfile/MyProfile'
 import NewPosts from '../../screens/NewPosts/NewPosts'
 import FunctionalitiesNav from '../FunctionailitiesNav'
+import Buscador from '../../screens/Buscador/Buscador'
 
 
 const Tab = createBottomTabNavigator()
@@ -21,6 +22,15 @@ function HomeNav(){
         }}
          
        
+        />
+        <Tab.Screen 
+        name='Buscador' 
+        component={Buscador}
+        options={{
+          headerShown:false
+        }}
+         
+        
         />
         <Tab.Screen 
         name='NewPost' 
