@@ -36,17 +36,17 @@ export default class Buscador extends Component {
 // event.preventDefault()
 //}
 
-irAPerfil(){
-  if (this.props.postData.data.owner === this.props.postData.data.nombreUsuario) {
+irAPerfil(user){
+  if (user.data.email === auth.currentUser.email) {
       this.props.navigation.navigate('MyProfile')
   } else {
-      this.props.navigation.navigate('Profile', { email: this.props.postData.data.owner })
+      this.props.navigation.navigate('Profile', { email: user.data.email })
   }
 }
 
 buscar(texto){
   //buscar filtra sobre todos los usuarios con respecto a lo que vamos escribiendo y lo guarda en resultado
-  let filtrado = this.state.usuarios.filter((elm) => elm.data.nombreUsuario.toLowerCase().includes(texto.toLowerCase()))
+  let filtrado = this.state.usuarios.filter((elm) => elm.data.email.toLowerCase().includes(texto.toLowerCase()))
   this.setState({
     resultado : filtrado,
     textoIngresado : texto
@@ -58,20 +58,27 @@ buscar(texto){
         
         <TextInput 
         style={styles.buscador}
-        placeholder='Nombre de usuario'
-        keyboardType='default'
+        placeholder='Ingrese su email'
+        keyboardType='email-adress'
         onChangeText={ (texto) => this.buscar(texto)}
         value={this.state.textoIngresado}/>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
-          <Text>Buscá a tu amigo:</Text>
-        </TouchableOpacity>
+        
+{
+  this.state.resultado === this.state.textoIngresado ?
+
+      <Text>No encontramos nada</Text>
+
+        :
         <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
-        data={this.state.textoIngresado} 
+        data={this.state.resultado} 
         keyExtractor={(item)=> item.id.toString()} 
-        renderItem={({ item }) => <Text onPress={()=> this.irAPerfil(item)}>{item.data.postData.owner}</Text> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
+        renderItem={({ item }) => <Text onPress={()=> this.irAPerfil(item)}>{item.data.email}</Text> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
         /> 
-        {/* poner una flatlist con los resultados */}
-        {/* poner un if que si lo que pusiste no coincide o esta vacio te lo diga y sino la flatlist*/}
+        
+
+}
+        
+
         {/*
         this.state.textoIngresado ? 
             
