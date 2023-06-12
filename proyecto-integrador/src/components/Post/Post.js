@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import  { db, auth } from '../../firebase/config'
 import firebase from 'firebase'
 import {FontAwesome} from '@expo/vector-icons'
+import FormComments from '../FormComments/FormComments'
 
 
 
@@ -111,7 +112,10 @@ render() {
                     }
                     <Text > Likes: {this.state.cantidaddelikesPosteo} </Text>
                 </View>
+                <View>
 
+                <FormComments />
+                </View>
                 
 
             </View>
