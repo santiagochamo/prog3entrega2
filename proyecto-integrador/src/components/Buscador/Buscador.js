@@ -72,7 +72,16 @@ buscar(texto){
         /> 
         {/* poner una flatlist con los resultados */}
         {/* poner un if que si lo que pusiste no coincide o esta vacio te lo diga y sino la flatlist*/}
+        {/*
+        this.state.textoIngresado ? 
+            
+            si no coincide "no existe tal usuario"
+            :
+            si coincide que proceda
+
+    */}
       </View>
+      
 
       //value es el atributo de TextInput en la que se guarda el valor textoIngresado del estado
       //el onChangeText va filtrando lo que va escribiendo el usuario y te trae lo que va coincidiendo
@@ -83,6 +92,7 @@ const styles = StyleSheet.create({
   buscador: {
       flex: 1
   }
+
 })
 
 //exportar este buscador al home o al feed
