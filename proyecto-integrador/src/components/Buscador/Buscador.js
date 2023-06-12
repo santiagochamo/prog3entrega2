@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import {auth, db} from '../../firebase/config'
+import Profile from '../../screens/Profile/Profile';
 
 //tengo que crear un text input en el que pongas el username del usuario y te lo busque (mirar el repo de nuestro primer proyecto)
 export default class Buscador extends Component {
@@ -31,6 +32,17 @@ export default class Buscador extends Component {
   })
   
 }
+//evitarSubmit(event){
+// event.preventDefault()
+//}
+
+irAPerfil(){
+  if (this.props.postData.data.owner === this.props.postData.data.nombreUsuario) {
+      this.props.navigation.navigate('MyProfile')
+  } else {
+      this.props.navigation.navigate('Profile', { email: this.props.postData.data.owner })
+  }
+}
 
 buscar(texto){
   //buscar filtra sobre todos los usuarios con respecto a lo que vamos escribiendo y lo guarda en resultado
@@ -43,13 +55,21 @@ buscar(texto){
   render() {
     return (
       <View>
-        <Text>Busca a tu amigo:</Text>
+        
         <TextInput 
         style={styles.buscador}
         placeholder='Nombre de usuario'
         keyboardType='default'
         onChangeText={ (texto) => this.buscar(texto)}
         value={this.state.textoIngresado}/>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+          <Text>Buscá a tu amigo:</Text>
+        </TouchableOpacity>
+        <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
+        data={this.state.textoIngresado} 
+        keyExtractor={(item)=> item.id.toString()} 
+        renderItem={({ item }) => <Text onPress={()=> this.irAPerfil(item)}>{item.data.postData.owner}</Text> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
+        /> 
         {/* poner una flatlist con los resultados */}
         {/* poner un if que si lo que pusiste no coincide o esta vacio te lo diga y sino la flatlist*/}
       </View>

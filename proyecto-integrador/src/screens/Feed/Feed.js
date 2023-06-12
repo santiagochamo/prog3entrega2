@@ -32,7 +32,7 @@ import Buscador from "../../components/Buscador/Buscador"
   render() {
     return (
       <View style={styles.vista}>
-        <Buscador style ={styles.buscador}/>
+        <Buscador navigation = {this.props.navigation}/>
         <Text>Feed</Text>
         <FlatList
         data={this.state.posts}     /*recibimos por props la info de los posteos subidos al feed*/
