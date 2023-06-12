@@ -25,24 +25,20 @@ export default class FormComments extends Component {
     render() {
         return (
             <View>
-                <TextInput
-                style = {styles.input}
-                keyboardType = 'default'
-                onChangeText={(text)=> this.setState({comentario:text})}
-                value={this.state.comentario}
-                placeholder= "Dejá tu comentario"
-                />
                 <TouchableOpacity onPress={() => this.props.navigation.navigate('Comments')}>
-                    <Text>Enviar</Text>
+                    <View>
+                        <TextInput
+                        style = {styles.input}
+                        keyboardType = 'default'
+                        onChangeText={(text)=> this.setState({comentario:text})}
+                        value={this.state.comentario}
+                        placeholder= "Dejá tu comentario"
+                        />
+                        <TouchableOpacity onPress={()=>this.crearComentario(this.state.comentario)}>
+                            <Text>Enviar</Text>
+                        </TouchableOpacity>
+                    </View>
                 </TouchableOpacity>
-
-
-                {/*
-                <TouchableOpacity onPress={()=>this.crearComentario(this.state.comentario)}>
-                    <Text>Enviar</Text>
-                </TouchableOpacity>
-                */}
-
             </View>
         )
     }
