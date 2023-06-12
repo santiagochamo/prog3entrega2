@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
 import {auth, db} from '../../firebase/config'
-import Profile from '../../screens/Profile/Profile';
+
 
 //tengo que crear un text input en el que pongas el username del usuario y te lo busque (mirar el repo de nuestro primer proyecto)
 export default class Buscador extends Component {
@@ -58,13 +58,13 @@ buscar(texto){
         
         <TextInput 
         style={styles.buscador}
-        placeholder='Ingrese su email'
+        placeholder='Buscá el email'
         keyboardType='email-adress'
         onChangeText={ (texto) => this.buscar(texto)}
         value={this.state.textoIngresado}/>
         
 {
-  this.state.resultado === this.state.textoIngresado ?
+  this.state.resultado ==! this.state.textoIngresado ?
 
       <Text>No encontramos nada</Text>
 
@@ -77,16 +77,6 @@ buscar(texto){
         
 
 }
-        
-
-        {/*
-        this.state.textoIngresado ? 
-            
-            si no coincide "no existe tal usuario"
-            :
-            si coincide que proceda
-
-    */}
       </View>
       
 
@@ -102,4 +92,4 @@ const styles = StyleSheet.create({
 
 })
 
-//exportar este buscador al home o al feed
+
