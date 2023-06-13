@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import  { db, auth } from '../../firebase/config'
 import firebase from 'firebase'
 import {FontAwesome} from '@expo/vector-icons'
-import FormComments from '../FormComments/FormComments'
+
 
 
 
@@ -113,8 +113,11 @@ render() {
                     <Text > Likes: {this.state.cantidaddelikesPosteo} </Text>
                 </View>
                 <View>
-
-                <FormComments />
+                <TouchableOpacity
+                    onPress={()=> this.props.navigation.navigate('Comments', {id: this.props.postData.id})}
+                >
+                <Text>Agregar comentario</Text>
+              </TouchableOpacity>
                 </View>
                 
 

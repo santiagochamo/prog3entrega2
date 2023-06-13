@@ -15,7 +15,7 @@ import Post from '../../components/Post/Post'
     }
     
     componentDidMount(){
-        db.collection('posts').onSnapshot( docs => { /*agregamos la coleccion inexistente de "posts" a nuestro firebase */
+        db.collection('posts').orderBy('created', 'desc').onSnapshot( docs => { /*agregamos la coleccion inexistente de "posts" a nuestro firebase */
             let arrayPosteos=[] /*creamos un array vacio para posteriormente almacenar los posteos subidos al feed*/
 
             docs.forEach(doc => arrayPosteos.push({ /*recorremos la coleccion de documentos a fin de pusear, dentro del array de posteos, cada posteo con su id y data determinados*/
