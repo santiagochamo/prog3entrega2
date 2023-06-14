@@ -48,7 +48,7 @@ class Profile extends Component {
     }
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                  {
                         this.state.users.foto !== '' ?
                             <Image
@@ -98,6 +98,9 @@ class Profile extends Component {
 const styles  = StyleSheet.create({
     img:{
       height: 200
+    },
+    container:{
+        flex: 1,
     }
   })
 export default Profile

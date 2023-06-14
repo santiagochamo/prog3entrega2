@@ -33,7 +33,7 @@ class Comments extends Component {
                 <FlatList
                 data={this.state.comentarios}
                 keyExtractor={item => item.createdAt.toString()}
-                renderItem={({item}) => <Text>{item.comentario}</Text>}
+                renderItem={({item}) => <Text>{item.owner}:{item.comentario}</Text>}
                 />
                
                

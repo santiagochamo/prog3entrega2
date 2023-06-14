@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
-import { Text, View, TouchableOpacity, FlatList } from 'react-native'
+import { Text, View, TouchableOpacity, FlatList, StyleSheet } from 'react-native'
 import Post from '../../components/Post/Post'
 
 class MyProfile extends Component {
@@ -44,6 +44,22 @@ class MyProfile extends Component {
 
         )
     }
+
+    borrarUsuario(){
+        db.collection("users").doc(this.props.route.params.id)
+        .update({
+            users: firebase.firestore.FieldValue.arrayRemove({
+                email: auth.currentUser.email
+            })
+            
+        })
+        .then(() => {
+            this.setState({
+                miUser: '',
+            })
+        })
+    }
+
     logout(){
         auth.signOut()
         .then(resp => this.props.navigation.navigate('Login')) /*tenemos que pasarle las props de navegacion desde alguna screen */
@@ -51,7 +67,7 @@ class MyProfile extends Component {
     }
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         
                 <Text>Nombre de usuario {this.state.miUser.nombreUsuario}</Text>
                 <Text>Email {this.state.miUser.email}</Text>
@@ -65,6 +81,7 @@ class MyProfile extends Component {
                 />          
 
         <TouchableOpacity onPress={()=> this.logout()}><Text>Cerrar sesión </Text></TouchableOpacity>
+        <TouchableOpacity><Text>Borrar user </Text></TouchableOpacity>
       
       </View>
     )
@@ -72,3 +89,9 @@ class MyProfile extends Component {
 }
 
 export default MyProfile
+
+const styles = StyleSheet.create({
+    container:{
+        flex: 1,
+    }
+})
