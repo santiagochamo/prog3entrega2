@@ -35,13 +35,27 @@ class Login extends Component {
             secureTextEntry={true}
         />
        
-        <TouchableOpacity style={styles.btn} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
+       {
+        this.state.inputMail =="" || this.state.inputPassword == ""  ? 
+                
+        <View>
+                <TouchableOpacity>
+                    <Text>Inicia Sesión</Text>
+                </TouchableOpacity>
+                <Text>Te faltan datos!!</Text>
+        </View>
+            :
+            <TouchableOpacity style={styles.btn} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
             <Text>Inicia Sesión</Text>
-        </TouchableOpacity>
+            </TouchableOpacity>
+
+        }
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
             <Text>No estas registrado? Registrate</Text>
         </TouchableOpacity>
+
       </View>
+      
       
     )
   }

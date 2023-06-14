@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import {auth, db} from '../../firebase/config'
-
-
+import { AntDesign } from '@expo/vector-icons';
 
 class Register extends Component {
 
@@ -24,6 +23,11 @@ componentDidMount(){
     user => {
         if (user){
             this.props.navigation.navigate('HomeNav')
+        }
+        else{
+        <View>
+            <AntDesign name="loading1" color='green' size={24} />
+        </View>
         }
     })
 }
@@ -53,7 +57,7 @@ componentDidMount(){
             }).catch(err => console.log(err))
         })
         .catch(err => this.setState({
-            errors: `El error es el siguiente:${err.message}` 
+            errors: `El error es el siguiente: ${err.message}` 
         }))
         
     }
@@ -124,11 +128,14 @@ componentDidMount(){
 
 
             {
-        this.state.email =="" || this.state.password == "" || this.state.usuario == "" ? 
-            
+        this.state.email =="" || this.state.password == "" || this.state.username == "" ? 
+                
+        <View>
                 <TouchableOpacity>
                     <Text style={styles.noRegistra}>Registrarme</Text>
                 </TouchableOpacity>
+                <Text>Te faltan datos!!</Text>
+        </View>
             :
             <TouchableOpacity onPress={() => this.registrarUsuario(this.state.email, this.state.password, this.state.username, this.state.bio, this.state.foto)}>
                 <Text style={styles.siRegistra}>Registrarme</Text>

@@ -37,7 +37,7 @@ export default class FormComments extends Component {
                <TextInput
                style = {styles.input}
                keyboardType = 'default'
-               onChangeText={(text)=> this.setState({comentario:text})}
+               onChangeText={(text)=> this.setState({comentario: text})}
                value={this.state.comentario}
                placeholder= "Dejá tu comentario"
                />
