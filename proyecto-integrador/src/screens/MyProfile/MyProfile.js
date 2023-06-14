@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
 import { Text, View, TouchableOpacity, FlatList, StyleSheet } from 'react-native'
 import Post from '../../components/Post/Post'
+import firebase from 'firebase'
 
 class MyProfile extends Component {
     constructor(props){
@@ -46,18 +47,17 @@ class MyProfile extends Component {
     }
 
     borrarUsuario(){
-        db.collection("users").doc(this.props.route.params.id)
-        .update({
-            users: firebase.firestore.FieldValue.arrayRemove({
-                email: auth.currentUser.email
-            })
-            
-        })
-        .then(() => {
-            this.setState({
-                miUser: '',
-            })
-        })
+        confirm('¿Querés borrar tu usuario?') ?
+    
+        db.collection("users")
+        .doc(this.props.route.params.id)
+        .delete()
+         .catch(e => console.log(e))   
+        
+        
+    :
+    console.log('No se ha podido borrar')
+        
     }
 
     logout(){
@@ -81,7 +81,7 @@ class MyProfile extends Component {
                 />          
 
         <TouchableOpacity onPress={()=> this.logout()}><Text>Cerrar sesión </Text></TouchableOpacity>
-        <TouchableOpacity><Text>Borrar user </Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=> this.borrarUsuario()}><Text>Borrar user </Text></TouchableOpacity>
       
       </View>
     )

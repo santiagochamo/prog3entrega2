@@ -24,6 +24,7 @@ class Comments extends Component {
                 comentarios: docs.data().comentarios
             })
         })
+        
     }
     
     render() {

@@ -38,7 +38,11 @@ class Login extends Component {
         <TouchableOpacity style={styles.btn} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
             <Text>Inicia Sesión</Text>
         </TouchableOpacity>
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
+            <Text>No estas registrado? Registrate</Text>
+        </TouchableOpacity>
       </View>
+      
     )
   }
 }

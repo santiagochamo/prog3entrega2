@@ -115,7 +115,7 @@ render() {
                 <View>
                     <View style={styles.comentariosEstilo}>
                     <FlatList
-                        data={this.state.comentarios}
+                        data={this.state.comentarios.slice(-4)}
                         keyExtractor={item => item.createdAt.toString()}
                         renderItem={({item}) => <Text>{item.owner}:{item.comentario}</Text>}
                 />

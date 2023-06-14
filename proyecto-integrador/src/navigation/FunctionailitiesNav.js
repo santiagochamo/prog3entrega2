@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import Feed from "../screens/Feed/Feed"
 import Comments from "../screens/Comments/Comments"
 import Profile from '../screens/Profile/Profile'
+import MyProfile from '../screens/MyProfile/MyProfile'
 
 const Stack = createNativeStackNavigator()
 
@@ -35,6 +36,15 @@ function FunctionalitiesNav() {
           options={{
             headerShown:false
           }} 
+        />
+        <Stack.Screen 
+            name='MyProfile'
+            component={MyProfile}
+            options={{
+              headerShown:false,
+              
+            }}
+             
         />
         
       </Stack.Navigator>
