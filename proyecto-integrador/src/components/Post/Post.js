@@ -1,4 +1,4 @@
-import { Text, StyleSheet, View, TouchableOpacity, Image} from 'react-native'
+import { Text, StyleSheet, View, TouchableOpacity, Image, FlatList} from 'react-native'
 import React, { Component } from 'react'
 import  { db, auth } from '../../firebase/config'
 import firebase from 'firebase'
@@ -113,6 +113,13 @@ render() {
                     <Text > Likes: {this.state.cantidaddelikesPosteo} </Text>
                 </View>
                 <View>
+                    <View style={styles.comentariosEstilo}>
+                    <FlatList
+                        data={this.state.comentarios}
+                        keyExtractor={item => item.createdAt.toString()}
+                        renderItem={({item}) => <Text>{item.owner}:{item.comentario}</Text>}
+                />
+                    </View>
                 <TouchableOpacity
                     onPress={()=> this.props.navigation.navigate('Comments', {id: this.props.postData.id})}
                 >
@@ -133,6 +140,11 @@ render() {
 const styles  = StyleSheet.create({
     img:{
       height: 200
+    },
+    comentariosEstilo:{
+        borderWidth:1,
+        borderColor:'#3d3d3d',
+        padding: 5
     }
   })
 

@@ -55,7 +55,10 @@ export default class FormComments extends Component {
 
 const styles = StyleSheet.create({
     input:{
+        borderWidth:1,
+        borderColor:'green',
+        marginTop: 24,
         height: 15,
-        margin: 10 //test nada más
+        padding: 5//test nada más
     }
 })
