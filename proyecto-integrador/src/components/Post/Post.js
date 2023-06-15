@@ -145,8 +145,10 @@ const styles  = StyleSheet.create({
         borderWidth: 2,
         borderColor: '#3d3d3d',
         maxWidth: 550,
-        marginBottom: 30,
+        marginTop: 20,
+        marginBottom: 20,
         borderRadius: 25,
+        backgroundColor: 'white'
     },
     img:{
         width: 500,

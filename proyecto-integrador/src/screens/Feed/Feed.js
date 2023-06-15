@@ -32,7 +32,7 @@ import Post from '../../components/Post/Post'
   render() {
     return (
       <View style={styles.vista}>
-        <Text>Feed</Text>
+        <Text style={styles.tituloFeedEstilo}>Feed</Text>
         <FlatList
         data={this.state.posts}     /*recibimos por props la info de los posteos subidos al feed*/
         keyExtractor={(item)=> item.id.toString()} /*pasamos a string el id de cada uno de los posteos*/
@@ -46,6 +46,20 @@ import Post from '../../components/Post/Post'
 const styles = StyleSheet.create({
   vista:{
     flex: 1,
-  }
+    backgroundColor: '#99bfa3',
+  },
+  tituloFeedEstilo:{
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    width: '100%',
+    minHeight: 50,
+    alignItems: 'center',
+    alignContent: 'center',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    paddingTop: 10,
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
 })
 export default Feed
