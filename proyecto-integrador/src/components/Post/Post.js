@@ -73,13 +73,13 @@ irAPerfil(){
 
 render() {
     return (
-        <View>
+        <View style={styles.postEntero}>
                 
                 { 
                  this.props.postData.data.owner === auth.currentUser.email ?
                     <View >
                         <TouchableOpacity onPress={() => this.irAPerfil()}>
-                            <Text>{this.props.postData.data.owner} </Text>
+                            <Text style={styles.nameEstilo}>{this.props.postData.data.owner} </Text>
                         </TouchableOpacity>
                         <Text onPress={() => this.borrarPosteo()}>
                             <FontAwesome name="trash-o" size={24} color='black' />
@@ -87,7 +87,7 @@ render() {
                     </View>
                     :
                     <TouchableOpacity onPress={() => this.irAPerfil()}>
-                        <Text>{this.props.postData.data.owner} </Text>
+                        <Text style={styles.nameEstilo}>{this.props.postData.data.owner} </Text>
                     </TouchableOpacity>
                 }
 
@@ -96,34 +96,34 @@ render() {
                     source={{ uri: this.props.postData.data.foto }}
                     resizeMode='cover'
             />
-            <Text > {this.props.postData.data.descripcion} </Text>
+            <Text style={styles.descripcionEstilo}> {this.props.postData.data.descripcion} </Text>
 
             <View >
 
                 <View >
                     {this.state.mipropiolike ?
                         <TouchableOpacity onPress={() => this.dislike()}>
-                            <FontAwesome name="heart" size={24} color="red" />
+                            <FontAwesome style={styles.likeSimbolo} name="heart" size={24} color="red" />
                         </TouchableOpacity>
                         :
                         <TouchableOpacity onPress={() => this.like()}>
-                            <FontAwesome name="heart-o" size={24} color="red" />                      
+                            <FontAwesome style={styles.likeSimbolo} name="heart-o" size={24} color="red" />                      
                         </TouchableOpacity>
                     }
-                    <Text > Likes: {this.state.cantidaddelikesPosteo} </Text>
+                    <Text style={styles.likesEstilo}> Likes: {this.state.cantidaddelikesPosteo} </Text>
                 </View>
                 <View>
                     <View style={styles.comentariosEstilo}>
                     <FlatList
                         data={this.state.comentarios.slice(-4)}
                         keyExtractor={item => item.createdAt.toString()}
-                        renderItem={({item}) => <Text>{item.owner}:{item.comentario}</Text>}
+                        renderItem={({item}) => <Text style={styles.comentarioIndividual}>{item.owner}: {item.comentario}</Text>}
                 />
                     </View>
                 <TouchableOpacity
                     onPress={()=> this.props.navigation.navigate('Comments', {id: this.props.postData.id})}
                 >
-                <Text>Agregar comentario</Text>
+                <Text style={styles.agregarComentarioEstilo}>Agregar comentario</Text>
               </TouchableOpacity>
                 </View>
                 
@@ -138,13 +138,54 @@ render() {
 }
 
 const styles  = StyleSheet.create({
+    postEntero:{
+        alignSelf: 'center',
+        alignItems: 'center',
+        minWidth: 550,
+        borderWidth: 2,
+        borderColor: '#3d3d3d',
+        maxWidth: 550,
+        marginBottom: 30,
+        borderRadius: 25,
+    },
     img:{
-      height: 200
+        width: 500,
+        height: 500,
+        alignSelf: 'center'
+    },
+    descripcionEstilo:{
+        alignSelf: 'center',
+        fontStyle: 'italic',
+        marginTop: 10,
+        marginBottom: 10,
     },
     comentariosEstilo:{
+        width: 500,
         borderWidth:1,
         borderColor:'#3d3d3d',
-        padding: 5
+        borderRadius: 15,
+        padding: 10,
+        backgroundColor: '#dedede'
+    },
+    likeSimbolo:{
+        marginLeft: 10,
+        marginBottom: 5,
+    }, 
+    likesEstilo:{
+        fontWeight: 'bold',
+        marginLeft: 10,
+        marginBottom: 10,
+    },
+    nameEstilo:{
+        fontWeight: 'bold',
+        marginBottom: 20,
+        marginTop: 20,
+    },
+    agregarComentarioEstilo:{
+        marginTop: 10,
+        marginLeft: 10,
+        fontWeight: '500',
+        marginBottom: 30,
     }
   })
 
