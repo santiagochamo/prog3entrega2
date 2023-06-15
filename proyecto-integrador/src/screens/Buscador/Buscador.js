@@ -54,7 +54,7 @@ buscar(texto){
 }
   render() {
     return (
-      <View>
+      <View style={styles.buscadorPage}>
         
         <TextInput 
         style={styles.buscador}
@@ -69,10 +69,10 @@ buscar(texto){
       <Text>No encontramos nada</Text>
 
         :
-        <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
+        <FlatList style={styles.resultadosEstilo}/*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
         data={this.state.resultado} 
         keyExtractor={(item)=> item.id.toString()} 
-        renderItem={({ item }) => <Text onPress={()=> this.irAPerfil(item)}>{item.data.email}</Text> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
+        renderItem={({ item }) => <Text style={styles.resultadoIndividual}onPress={()=> this.irAPerfil(item)}>{item.data.email}</Text> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
         /> 
         
 
@@ -87,7 +87,28 @@ buscar(texto){
 }
 const styles = StyleSheet.create({
   buscador: {
-      flex: 1
+      textAlign: 'center',
+      alignContent: 'center',
+      borderWidth: 2,
+      borderRadius: 25,
+      marginTop: 100,
+      padding: 20,
+      fontSize: 30,
+      backgroundColor: 'white'
+  },
+  buscadorPage: {
+    flex: 1,
+    alignItems: 'center',
+    backgroundColor: '#c7c7c7'
+  },
+  resultadosEstilo: {
+    marginTop: 30,
+    fontSize: 30,
+    marginBottom: 30
+  },
+  resultadoIndividual:{
+    marginBottom: 5,
+    fontSize: 30,
   }
 
 })
