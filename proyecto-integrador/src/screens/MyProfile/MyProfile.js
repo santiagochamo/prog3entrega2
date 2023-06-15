@@ -67,22 +67,26 @@ class MyProfile extends Component {
     }
   render() {
     return (
-      <View style={styles.container}>
+      <View style={styles.miContainer}>
+        <View style={styles.miInfoMiUsuario}>
+                <Text style={styles.miTexto}>Nombre de usuario: {this.state.miUser.nombreUsuario}</Text>
+                <Text style={styles.miTexto}>Email: {this.state.miUser.email}</Text>
+                <Text style={styles.miFotoDePerfil}>Foto de perfil: {this.state.miUser.foto}</Text>
+                <Text style={styles.miBiografia}>Biografia: {this.state.miUser.biografia}</Text>
+                <Text style={styles.miTexto}>Cantidad de posteos: {this.state.posts.length}</Text>
         
-                <Text>Nombre de usuario {this.state.miUser.nombreUsuario}</Text>
-                <Text>Email {this.state.miUser.email}</Text>
-                <Text>Biografia {this.state.miUser.biografia}</Text>
-                <Text>Foto de perfil{this.state.miUser.foto}</Text>
-                <Text>Cantidad de posteos: {this.state.posts.length}</Text>
                 <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
                     data={this.state.posts} 
                     keyExtractor={(item)=> item.id.toString()} 
                     renderItem={({ item }) => <Post postData={ item } /> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
-                />          
+                /> 
+        </View>
 
-        <TouchableOpacity onPress={()=> this.logout()}><Text>Cerrar sesión </Text></TouchableOpacity>
-        <TouchableOpacity onPress={()=> this.borrarUsuario()}><Text>Borrar user </Text></TouchableOpacity>
-      
+        <View style={styles.miBotones}>
+            <TouchableOpacity onPress={()=> this.logout()}><Text style={styles.miCerrarSesion}>Cerrar sesión</Text></TouchableOpacity>
+            <TouchableOpacity onPress={()=> this.borrarUsuario()}><Text style={styles.miBorrarUsuario}>Borrar usuario</Text></TouchableOpacity>
+        </View>      
+
       </View>
     )
   }
@@ -91,7 +95,64 @@ class MyProfile extends Component {
 export default MyProfile
 
 const styles = StyleSheet.create({
-    container:{
+    miContainer:{
         flex: 1,
+        width: '100%',
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#bd8f8f'
+    },
+    miInfoMiUsuario:{
+        width: 600,
+        marginTop: 50,
+        padding: 30,
+        borderWidth: 2,
+        borderRadius: 25,
+        backgroundColor: 'white',
+    },
+    miTexto:{
+        fontSize: 20
+    },
+    miBotones:{
+        width: 200,
+        alignItems: 'center'
+    },
+    miCerrarSesion:{
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderRadius: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+        backgroundColor: '#bababa',
+        marginTop: 30
+    },
+    miBorrarUsuario:{
+        fontSize: 20,
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderRadius: 15,
+        borderColor: 'white',
+        fontWeight: 'bold',
+        color: 'white',
+        backgroundColor: '#6e2e2e',
+        marginTop: 30
+    },
+    miFotoDePerfil:{
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    miBiografia:{
+        fontSize: 15,
+        fontStyle: 'italic',
+        marginBottom: 5,
     }
+
 })
