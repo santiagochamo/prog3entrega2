@@ -68,7 +68,7 @@ class MyProfile extends Component {
   render() {
     return (
       <View style={styles.miContainer}>
-        <View style={styles.miInfoMiUsuario}>
+        <View style={styles.miInfoDeUsuario}>
                 <Text style={styles.miTexto}>Nombre de usuario: {this.state.miUser.nombreUsuario}</Text>
                 <Text style={styles.miTexto}>Email: {this.state.miUser.email}</Text>
                 <Text style={styles.miFotoDePerfil}>Foto de perfil: {this.state.miUser.foto}</Text>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         backgroundColor: '#bd8f8f'
     },
-    miInfoMiUsuario:{
+    miInfoDeUsuario:{
         width: 600,
         marginTop: 50,
         padding: 30,

@@ -63,11 +63,14 @@ class Profile extends Component {
                 {
                     this.state.users !== '' ?
                <>
-                <Text>Nombre de usuario {this.state.users.nombreUsuario}</Text>
-                <Text>Email {this.state.users.email}</Text>
-                <Text>Biografia {this.state.users.biografia}</Text>
-                <Text>Foto de perfil{this.state.users.foto}</Text>
-                <Text>Cantidad de posteos: {this.state.posts.length}</Text> 
+               <View style={styles.infoDeUsuario}>
+                    <Text style={styles.texto}>Nombre de usuario {this.state.users.nombreUsuario}</Text>
+                    <Text style={styles.texto}>Email {this.state.users.email}</Text>
+                    <Text style={styles.fotoDePerfil}>Foto de perfil{this.state.users.foto}</Text>
+                    <Text style={styles.biografia}>Biografia {this.state.users.biografia}</Text>
+                    <Text style={styles.texto}>Cantidad de posteos: {this.state.posts.length}</Text> 
+               </View>
+                
                 </>
 
                 :
@@ -97,10 +100,35 @@ class Profile extends Component {
 
 const styles  = StyleSheet.create({
     img:{
-      height: 200
+      height: 100,
+      marginTop: 20,
     },
     container:{
         flex: 1,
-    }
+        width: '100%',
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: '#bd8f8f'
+    },
+    infoDeUsuario:{
+        width: 600,
+        marginTop: 20,
+        padding: 30,
+        borderWidth: 2,
+        borderRadius: 25,
+        backgroundColor: 'white',
+    },
+    texto:{
+        fontSize: 20
+    },
+    fotoDePerfil:{
+        marginTop: 5,
+        marginBottom: 5,
+    },
+    biografia:{
+        fontSize: 15,
+        fontStyle: 'italic',
+        marginBottom: 5,
+    },
   })
 export default Profile

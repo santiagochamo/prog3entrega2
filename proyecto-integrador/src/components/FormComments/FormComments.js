@@ -43,7 +43,7 @@ export default class FormComments extends Component {
                />
                 
                <TouchableOpacity onPress={()=>this.crearComentario(this.state.comentario)}>
-                   <Text>Enviar</Text>
+                   <Text style={styles.botonEnviar}>Enviar</Text>
                </TouchableOpacity>
        
                 
@@ -55,10 +55,32 @@ export default class FormComments extends Component {
 
 const styles = StyleSheet.create({
     input:{
-        borderWidth:1,
-        borderColor:'green',
+        borderWidth: 2,
+        borderColor:'black',
+        minWidth: 700,
+        alignSelf: 'center',
+        alignItems: 'center',
         marginTop: 24,
-        height: 15,
-        padding: 5//test nada más
+        height: 50,
+        fontSize: 15,
+        paddingLeft: 15,
+        paddingRight: 15,
+        borderRadius: 15,
+    },
+    botonEnviar:{
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        width: 200,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderRadius: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+        backgroundColor: '#bababa',
+        marginTop: 30,
+        alignSelf: 'center',
+        marginBottom: 20
     }
 })

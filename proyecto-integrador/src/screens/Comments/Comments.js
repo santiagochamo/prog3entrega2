@@ -29,12 +29,13 @@ class Comments extends Component {
     
     render() {
         return (
-            <View>
-                <Text>Comentarios</Text>
+            <View style={styles.container}>
+                <Text style={styles.tituloComentarios}>Comentarios</Text>
                 <FlatList
+                style={styles.listaComentarios}
                 data={this.state.comentarios}
                 keyExtractor={item => item.createdAt.toString()}
-                renderItem={({item}) => <Text>{item.owner}:{item.comentario}</Text>}
+                renderItem={({item}) => <Text style={styles.comentarios}>{item.owner}:{item.comentario}</Text>}
                 />
                
                
@@ -49,9 +50,33 @@ class Comments extends Component {
 
 
 const styles = StyleSheet.create({
+    container:{
+        backgroundColor: '#dedede',
+        height: '100%',
+    },
     input:{
         height: 15,
         margin: 10 //test nada más
+    },
+    tituloComentarios:{
+        textAlign: 'center',
+        alignContent: 'center',
+        alignSelf: 'center',
+        maxWidth: 500,
+        borderWidth: 2,
+        borderRadius: 25,
+        marginTop: 20,
+        marginBottom: 20,
+        padding: 20,
+        fontSize: 30,
+        backgroundColor: 'white'
+    },
+    listaComentarios:{
+        alignSelf: 'center',
+        maxWidth: 700,
+    },
+    comentarios:{
+        fontSize: 20
     }
 })
 
