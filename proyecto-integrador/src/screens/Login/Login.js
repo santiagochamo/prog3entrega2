@@ -7,19 +7,30 @@ class Login extends Component {
         super(props)
         this.state = {
             inputMail: '',
-            inputPassword: ''
+            inputPassword: '',
+            logueoError: ''
         }
     }
 
     logIn(mail, password){
         auth.signInWithEmailAndPassword(mail, password)
-        .then(resp => this.props.navigation.navigate('HomeNav'))
-        .catch(err => console.log(err))
+        .then( res => {
+            this.setState({
+                logueoError: ''
+            })
+            this.props.navigation.navigate('HomeNav')
+        })
+        .catch(error => 
+            this.setState({
+            logueoError: `No te has podido loguear debido a lo siguiente:${error.message}`
+        })
+        )
     }
 
   render() {
     return (
       <View>
+          <Text>{this.state.logueoError}</Text>
         <TextInput
             style={styles.reg}
             placeholder= 'Digita tu correo electrónico'

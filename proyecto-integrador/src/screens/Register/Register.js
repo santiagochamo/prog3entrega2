@@ -13,23 +13,32 @@ class Register extends Component {
             username:"",
             bio:"",
             foto: "",
-            errors:"",
+            registroError:"",
+            validandoUsuario: true
         }
 
     }
 /*remember me */
-componentDidMount(){ 
-    auth.onAuthStateChanged(
-    user => {
-        if (user){
-            this.props.navigation.navigate('HomeNav')
-        }
-        else{
-        <View>
-            <AntDesign name="loading1" color='green' size={24} />
-        </View>
-        }
-    })
+componentDidMount(){
+    setTimeout(() => {
+        auth.onAuthStateChanged(
+            user => {
+                if (user){
+                    this.props.navigation.navigate('HomeNav')
+                }
+                else { 
+                    this.setState({
+                        validandoUsuario: false
+                    })
+                        
+                    
+                }
+            })
+    }, 
+    5000
+    
+    ) 
+    
 }
     registrarUsuario(email, password, username, bio, foto){
         auth.createUserWithEmailAndPassword(email,password)
@@ -51,13 +60,13 @@ componentDidMount(){
                     username:"",
                     bio:"",
                     foto: "",
-                    errors:"",
+                    resgistroError:"",
                 })
                 
             }).catch(err => console.log(err))
         })
         .catch(err => this.setState({
-            errors: `El error es el siguiente: ${err.message}` 
+            registroError: `No te has podido registrar, debido a lo siguiente: ${err.message}` 
         }))
         
     }
@@ -67,7 +76,19 @@ componentDidMount(){
 
     render() {
         return (
+            
             <View>
+                {
+                    this.state.validandoUsuario === true ?
+
+                    <View>
+                        <AntDesign name="loading1" color='green' size={24} />
+                    </View>
+
+                    :
+                    <>
+
+                
                 <Text>Registrate aquí</Text>
                 <Text>{this.state.errors}</Text>
                 <TextInput 
@@ -146,11 +167,12 @@ componentDidMount(){
             <Text>Ya estas registrado? Logueate</Text>
         </TouchableOpacity>
         
-
-        
+        </>
+         }
             </View>
         )
     }
+
 }
 
 const styles = StyleSheet.create({
