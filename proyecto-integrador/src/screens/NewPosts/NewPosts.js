@@ -55,7 +55,7 @@ onImageUpload(url){
   render() {
     return (
       <View style={styles.container}>
-        <Text>Create tu posteo</Text>
+        <Text style={styles.tituloNewPost}>Create tu posteo</Text>
         <View>
             {
                 
@@ -74,7 +74,7 @@ onImageUpload(url){
                          likes: this.state.likes,
                          comentarios:this.state.comentarios
                     })}>
-                        <Text>Hace tu posteo</Text>
+                        <Text style={styles.btnPost}>Hace tu posteo</Text>
                     </TouchableOpacity>
              </>
 
@@ -94,10 +94,43 @@ onImageUpload(url){
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#9db8cc'
     },
+    tituloNewPost:{
+        alignSelf: 'center',
+        backgroundColor: 'white',
+        width: '100%',
+        minHeight: 50,
+        alignItems: 'center',
+        alignContent: 'center',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        paddingTop: 10,
+        fontSize: 20,
+        fontWeight: 'bold'
+      },
     camara:{
-        height: 250
+        minHeight: 500,
+        width: 500,
+        alignSelf: 'center',
+    },
+    btnPost:{
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        width: 200,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderRadius: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        marginTop: 30,
+        alignSelf: 'center',
+        marginBottom: 20,
+        marginRight: 10,
     }
 })
 

@@ -59,12 +59,12 @@ class CamaraPost extends Component {
             style={styles.camara}
             type={Camera.Constants.Type.back}
             ref={(metodosComponente) => this.metodosCamara = metodosComponente}
-            ratio='16:9'
+            ratio='1:1'
             />
             <TouchableOpacity
                     onPress={()=> this.tomarFoto()}
             >
-                        <Text>
+                        <Text style={styles.tomarFoto}>
                             Tomar foto
                         </Text>
             </TouchableOpacity>
@@ -79,22 +79,22 @@ class CamaraPost extends Component {
                 source={{uri: this.state.fotoTomada}} 
                 style={styles.img} />
 
-                <View>
+                <View style={styles.btnsFoto}>
                     <TouchableOpacity 
                     onPress={()=> this.aceptarFoto()}>
-                        <Text>
+                        <Text style={styles.aceptar}>
                             Aceptar foto
                         </Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=> this.rechazarFoto()}>
-                        <Text>
+                        <Text style={styles.rechazar}>
                             Rechazar foto
                         </Text>
                     </TouchableOpacity>
                 </View>
             </>
             :
-            <Text>No picture</Text>
+            <Text style={styles.noPicture}>No picture</Text>
         }
       </View>
     )
@@ -106,15 +106,95 @@ const styles = StyleSheet.create({
         flex: 1
     },
     camara:{
-        flex: 1
+        height: 500,
+        width: 500,
+        alignSelf: 'center',
+        borderWidth: 2,
     },
     img:{
-        flex: 1
+        height: 500,
+        width: 500,
+        alignSelf: 'center',
+        borderWidth: 2,
+        marginTop: 24
     },
     cameraBody: {
-        height: '60vh',
+        height: '80vh',
         width: '60vw',
+        alignSelf: 'center',
+        alignItems: 'center',
+        justifyContent: 'center',
+        alignContent: 'center',
+        marginTop: 24,
     },
+    tomarFoto: {
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        width: 200,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderRadius: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        marginTop: 30,
+        alignSelf: 'center',
+        marginBottom: 20
+    },
+    btnsFoto:{
+        flexDirection: 'row',
+        alignSelf: 'center'
+    },
+    aceptar:{
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        width: 200,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderRadius: 15,
+        fontSize: 20,
+        fontWeight: 'bold',
+        backgroundColor: 'white',
+        marginTop: 30,
+        alignSelf: 'center',
+        marginBottom: 20,
+        marginRight: 10,
+    },
+    rechazar:{
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        height: 40,
+        width: 200,
+        paddingTop: 4,
+        minWidth: 200,
+        borderWidth: 2,
+        borderColor: 'white',
+        borderRadius: 15,
+        fontSize: 20,
+        color: 'white',
+        fontWeight: 'bold',
+        backgroundColor: '#6e2e2e',
+        marginTop: 30,
+        alignSelf: 'center',
+        marginBottom: 20,
+        marginLeft: 10
+    },
+    noPicture: {
+        textAlign: 'center',
+        width: 350,
+        marginBottom: 24,
+        fontStyle: 'italic',
+        fontSize: 30,
+        color: '#802121',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 200
+    }
 })
 
 export default CamaraPost
