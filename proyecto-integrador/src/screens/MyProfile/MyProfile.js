@@ -116,9 +116,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#bd8f8f'
     },
     infoYBotones:{
-        flex: 1,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 25,
     },
     miInfoDeUsuario:{
         width: 1000,
@@ -131,8 +131,7 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     listaPosts:{
-        flex: 1,
-        flexGrow: 1,
+        marginTop: 10
     },
     miBotones:{
         width: 200,

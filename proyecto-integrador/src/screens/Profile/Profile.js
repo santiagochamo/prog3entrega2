@@ -49,7 +49,8 @@ class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
-                 {
+                <View style={styles.userInfoContainer}>
+                {
                         this.state.users.foto !== '' ?
                             <Image
                                 style={styles.img}
@@ -75,9 +76,12 @@ class Profile extends Component {
 
                 :
 
-                <Text>No hemos podido encontrar e usuario que buscabas!</Text>
+                <Text style={styles.noUser}>No hemos podido encontrar e usuario que buscabas!</Text>
                 
                 }
+                </View>
+                 
+                
                 {
                     this.state.posts.length >= 1 ?
 
@@ -89,7 +93,7 @@ class Profile extends Component {
 
                 :
 
-                    <Text>Este usuario no tiene publicaciones</Text>
+                    <Text style={styles.noPost}>Este usuario no tiene publicaciones</Text>
                 
                 }
                 
@@ -103,16 +107,20 @@ const styles  = StyleSheet.create({
       height: 100,
       marginTop: 20,
     },
+    userInfoContainer:{
+        flexDirection: 'row',
+        marginTop: 25
+    },
     container:{
         flex: 1,
         width: '100%',
         alignItems: 'center',
         alignSelf: 'center',
+        verticalAlign: 'center',
         backgroundColor: '#bd8f8f'
     },
     infoDeUsuario:{
-        width: 600,
-        marginTop: 20,
+        width: 1000,
         padding: 30,
         borderWidth: 2,
         borderRadius: 25,
@@ -130,5 +138,30 @@ const styles  = StyleSheet.create({
         fontStyle: 'italic',
         marginBottom: 5,
     },
+    noUser:{
+        textAlign: 'center',
+        width: 350,
+        marginBottom: 24,
+        fontStyle: 'italic',
+        fontSize: 30,
+        color: '#802121',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 200
+    },
+    noPost:{
+        textAlign: 'center',
+        width: 350,
+        marginBottom: 24,
+        fontStyle: 'italic',
+        fontSize: 30,
+        color: '#802121',
+        fontWeight: 'bold',
+        alignSelf: 'center',
+        justifyContent: 'center',
+        marginTop: 200
+    }
+
   })
 export default Profile
