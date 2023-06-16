@@ -23,7 +23,7 @@ class Profile extends Component {
                     })
                 })
                 this.setState({
-                    users: usuarios
+                    users: usuarios[0].data
                 })
             }
 

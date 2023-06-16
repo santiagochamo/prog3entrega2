@@ -41,10 +41,16 @@ export default class FormComments extends Component {
                value={this.state.comentario}
                placeholder= "Dejá tu comentario"
                />
-                
+                {
+                    this.state.comentario == '' ?
+                    <TouchableOpacity>
+                   <Text style={styles.botonEnviar}>Enviar</Text>
+               </TouchableOpacity>
+                :
                <TouchableOpacity onPress={()=>this.crearComentario(this.state.comentario)}>
                    <Text style={styles.botonEnviar}>Enviar</Text>
                </TouchableOpacity>
+                }
        
                 
                 
