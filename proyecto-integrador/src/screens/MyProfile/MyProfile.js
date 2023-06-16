@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { auth, db } from '../../firebase/config'
-import { Text, View, TouchableOpacity, FlatList, StyleSheet } from 'react-native'
+import { Text, View, TouchableOpacity, FlatList, StyleSheet, ScrollView } from 'react-native'
 import Post from '../../components/Post/Post'
 import firebase from 'firebase'
 
@@ -68,24 +68,37 @@ class MyProfile extends Component {
   render() {
     return (
       <View style={styles.miContainer}>
-        <View style={styles.miInfoDeUsuario}>
-                <Text style={styles.miTexto}>Nombre de usuario: {this.state.miUser.nombreUsuario}</Text>
-                <Text style={styles.miTexto}>Email: {this.state.miUser.email}</Text>
-                <Text style={styles.miFotoDePerfil}>Foto de perfil: {this.state.miUser.foto}</Text>
-                <Text style={styles.miBiografia}>Biografia: {this.state.miUser.biografia}</Text>
-                <Text style={styles.miTexto}>Cantidad de posteos: {this.state.posts.length}</Text>
-        
-                <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
-                    data={this.state.posts} 
-                    keyExtractor={(item)=> item.id.toString()} 
-                    renderItem={({ item }) => <Post postData={ item } /> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
-                /> 
+
+        <View style={styles.infoYBotones}>
+            <View style={styles.miInfoDeUsuario}>
+            <Text style={styles.miTexto}>Nombre de usuario: {this.state.miUser.nombreUsuario}</Text>
+            <Text style={styles.miTexto}>Email: {this.state.miUser.email}</Text>
+            <Text style={styles.miFotoDePerfil}>Foto de perfil: {this.state.miUser.foto}</Text>
+            <Text style={styles.miBiografia}>Biografia: {this.state.miUser.biografia}</Text>
+            <Text style={styles.miTexto}>Cantidad de posteos: {this.state.posts.length}</Text>
+            </View>
+            <View style={styles.miBotones}>
+                <TouchableOpacity onPress={()=> this.logout()}><Text style={styles.miCerrarSesion}>Cerrar sesión</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=> this.borrarUsuario()}><Text style={styles.miBorrarUsuario}>Borrar usuario</Text></TouchableOpacity>
+            </View>
         </View>
 
-        <View style={styles.miBotones}>
-            <TouchableOpacity onPress={()=> this.logout()}><Text style={styles.miCerrarSesion}>Cerrar sesión</Text></TouchableOpacity>
-            <TouchableOpacity onPress={()=> this.borrarUsuario()}><Text style={styles.miBorrarUsuario}>Borrar usuario</Text></TouchableOpacity>
-        </View>      
+        
+
+        <View style={{flex:1}}>
+        <FlatList /*usamos la flatlist aca y no en el componente de datos a fin de poder pasarle props al componente de Post en el renderitem */
+                scrollEnabled={true}
+                data={this.state.posts} 
+                keyExtractor={(item)=> item.id.toString()}
+                renderItem={({ item }) => <Post postData={ item } /> } /*deberiamos recibir las props en Post de tal manera para renderizar los posts del usuario determinado */
+            /> 
+        </View>
+            
+        
+                
+        
+
+              
 
       </View>
     )
@@ -102,9 +115,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         backgroundColor: '#bd8f8f'
     },
+    infoYBotones:{
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'center'
+    },
     miInfoDeUsuario:{
-        width: 600,
-        marginTop: 50,
+        width: 1000,
         padding: 30,
         borderWidth: 2,
         borderRadius: 25,
@@ -113,9 +130,18 @@ const styles = StyleSheet.create({
     miTexto:{
         fontSize: 20
     },
+    listaPosts:{
+        flex: 1,
+        flexGrow: 1,
+    },
     miBotones:{
         width: 200,
-        alignItems: 'center'
+        alignItems: 'center',
+        marginLeft: 20,
+        justifyContent: 'center',
+        alignContent: 'center',
+        verticalAlign: 'center'
+
     },
     miCerrarSesion:{
         textAlign: 'center',
@@ -128,7 +154,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         backgroundColor: '#bababa',
-        marginTop: 30
     },
     miBorrarUsuario:{
         fontSize: 20,
