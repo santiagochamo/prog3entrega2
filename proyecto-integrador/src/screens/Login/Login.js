@@ -22,7 +22,7 @@ class Login extends Component {
         })
         .catch(error => 
             this.setState({
-            logueoError: `No te has podido loguear debido a lo siguiente:${error.message}`
+            logueoError: `No te has podido loguear debido a lo siguiente: ${error.message}`
         })
         )
     }
@@ -30,7 +30,7 @@ class Login extends Component {
   render() {
     return (
       <View style={styles.container}>
-          <Text>{this.state.logueoError}</Text>
+          <Text style={styles.errorLog}>{this.state.logueoError}</Text>
         <TextInput
             style={styles.reg}
             placeholder= 'Digita tu correo electrónico'
@@ -51,12 +51,12 @@ class Login extends Component {
                 
         <View>
                 <TouchableOpacity>
-                    <Text style={styles.btnLoginCerrado}>Inicia Sesión</Text>
+                    <Text style={styles.noLogin}>Inicia Sesión</Text>
                 </TouchableOpacity>
                     <Text style={styles.textoFaltanDatos}>Te faltan datos!!</Text>
         </View>
             :
-            <TouchableOpacity style={styles.btn} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
+            <TouchableOpacity style={styles.siLogin} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
             <Text style={styles.btnText}>Inicia Sesión</Text>
             </TouchableOpacity>
 
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         width: 350,
         backgroundColor: 'white'
     },
-    btn: {
+    siLogin: {
         backgroundColor:'#54d0e0',
         padding: 10,
         borderRadius: 20,
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
         textDecorationLine: 'underline',
         marginTop: 24
     },
-    btnLoginCerrado:{
+    noLogin:{
         textAlign: 'center',
         marginBottom: 24,
         backgroundColor:'#cfcfcf',
@@ -131,6 +131,14 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginBotton: 24
+    },
+    errorLog:{
+        textAlign: 'center',
+        width: 350,
+        marginBottom: 24,
+        fontStyle: 'italic',
+        color: '#802121',
+        fontWeight: 'bold'
     }
 })
 //boton para ir al regitro

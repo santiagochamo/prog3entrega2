@@ -77,7 +77,7 @@ componentDidMount(){
     render() {
         return (
             
-            <View>
+            <View style={styles.container}>
                 {
                     this.state.validandoUsuario === true ?
 
@@ -89,8 +89,8 @@ componentDidMount(){
                     <>
 
                 
-                <Text>Registrate aquí</Text>
-                <Text>{this.state.errors}</Text>
+                <Text style={styles.titulo}>Registrate aquí</Text>
+                <Text style={styles.errorRegister}>{this.state.errors}</Text>
                 <TextInput 
                     style={styles.reg}
                     placeholder='Email'
@@ -153,18 +153,18 @@ componentDidMount(){
                 
         <View>
                 <TouchableOpacity>
-                    <Text style={styles.noRegistra}>Registrarme</Text>
+                    <Text style={styles.noRegister}>Registrarme</Text>
                 </TouchableOpacity>
-                <Text>Te faltan datos!!</Text>
+                <Text style={styles.textoFaltanDatos}>Te faltan datos!!</Text>
         </View>
             :
             <TouchableOpacity onPress={() => this.registrarUsuario(this.state.email, this.state.password, this.state.username, this.state.bio, this.state.foto)}>
-                <Text style={styles.siRegistra}>Registrarme</Text>
+                <Text style={styles.siRegister}>Registrarme</Text>
             </TouchableOpacity>
 
         }
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Login')}>
-            <Text>Ya estas registrado? Logueate</Text>
+            <Text style={styles.text}>Ya estas registrado? Logueate</Text>
         </TouchableOpacity>
         
         </>
@@ -176,23 +176,66 @@ componentDidMount(){
 }
 
 const styles = StyleSheet.create({
+    titulo:{
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBottom: 24
+    }, 
+    container:{
+        marginTop: 75,
+        height: '75%',
+        minWidth: 500,
+        alignSelf: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        padding: 25,
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 25,
+        backgroundColor: '#bbe3f0',
+    },
     reg: {
         borderWidth:1,
         borderColor:'#3d3d3d',
-        marginTop: 24,
+        borderRadius: 15,
+        marginBottom: 24,
         height: 24,
-        padding: 5
+        padding: 15,
+        width: 350,
+        backgroundColor: 'white'
     },
-    btn: {
-        marginTop: 32,
+    siRegister: {
         backgroundColor:'#54d0e0',
         padding: 10,
         borderRadius: 20,
+        width: 250,
+        alignSelf: 'center',
+        alignItems: 'center',
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: 'white',
     },
     btnText: {
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'white'
+    },
+    noRegister:{
+        textAlign: 'center',
+        marginBottom: 24,
+        backgroundColor:'#cfcfcf',
+        padding: 10,
+        borderRadius: 20,
+        width: 250,
+        alignSelf: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold'
+    },
+    text:{
+        textDecorationLine: 'underline',
+        marginTop: 24
     },
     email:{
 
@@ -209,11 +252,19 @@ const styles = StyleSheet.create({
     bio:{
 
     },
-    siRegistra:{
-
+    textoFaltanDatos:{
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBotton: 24
     },
-    noRegistra:{
-
+    errorRegister:{
+        textAlign: 'center',
+        width: 350,
+        marginBottom: 24,
+        fontStyle: 'italic',
+        color: '#802121',
+        fontWeight: 'bold'
     }
 })
 
