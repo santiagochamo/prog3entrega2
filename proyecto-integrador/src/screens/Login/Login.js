@@ -29,7 +29,7 @@ class Login extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.container}>
           <Text>{this.state.logueoError}</Text>
         <TextInput
             style={styles.reg}
@@ -51,18 +51,18 @@ class Login extends Component {
                 
         <View>
                 <TouchableOpacity>
-                    <Text>Inicia Sesión</Text>
+                    <Text style={styles.btnLoginCerrado}>Inicia Sesión</Text>
                 </TouchableOpacity>
-                <Text>Te faltan datos!!</Text>
+                    <Text style={styles.textoFaltanDatos}>Te faltan datos!!</Text>
         </View>
             :
             <TouchableOpacity style={styles.btn} onPress={()=> this.logIn(this.state.inputMail, this.state.inputPassword)}>
-            <Text>Inicia Sesión</Text>
+            <Text style={styles.btnText}>Inicia Sesión</Text>
             </TouchableOpacity>
 
         }
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Register')}>
-            <Text>No estas registrado? Registrate</Text>
+            <Text style={styles.text}>No estas registrado? Registrate</Text>
         </TouchableOpacity>
 
       </View>
@@ -77,20 +77,60 @@ const styles = StyleSheet.create({
     reg: {
         borderWidth:1,
         borderColor:'#3d3d3d',
-        marginTop: 24,
+        borderRadius: 15,
+        marginBottom: 24,
         height: 24,
-        padding: 5
+        padding: 15,
+        width: 350,
+        backgroundColor: 'white'
     },
     btn: {
-        marginTop: 32,
         backgroundColor:'#54d0e0',
         padding: 10,
         borderRadius: 20,
+        width: 250,
+        alignSelf: 'center',
+        alignItems: 'center',
     },
     btnText: {
         textAlign: 'center',
         fontWeight: 'bold',
         color: 'white'
+    },
+    container:{
+        marginTop: 150,
+        height: '50%',
+        minWidth: 500,
+        alignSelf: 'center',
+        alignItems: 'center',
+        alignContent: 'center',
+        justifyContent: 'center',
+        padding: 25,
+        borderWidth: 2,
+        borderColor: 'black',
+        borderRadius: 25,
+        backgroundColor: '#bbe3f0',
+    },
+    text:{
+        textDecorationLine: 'underline',
+        marginTop: 24
+    },
+    btnLoginCerrado:{
+        textAlign: 'center',
+        marginBottom: 24,
+        backgroundColor:'#cfcfcf',
+        padding: 10,
+        borderRadius: 20,
+        width: 250,
+        alignSelf: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold'
+    },
+    textoFaltanDatos:{
+        textAlign: 'center',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginBotton: 24
     }
 })
 //boton para ir al regitro
