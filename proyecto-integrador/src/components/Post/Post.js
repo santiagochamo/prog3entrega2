@@ -77,11 +77,11 @@ render() {
                 
                 { 
                  this.props.postData.data.owner === auth.currentUser.email ?
-                    <View >
+                    <View style={styles.sobrePost}>
                         <TouchableOpacity onPress={() => this.irAPerfil()}>
                             <Text style={styles.nameEstilo}>{this.props.postData.data.owner} </Text>
                         </TouchableOpacity>
-                        <Text onPress={() => this.borrarPosteo()}>
+                        <Text style={styles.borrarTacho} onPress={() => this.borrarPosteo()}>
                             <FontAwesome name="trash-o" size={24} color='black' />
                         </Text>
                     </View>
@@ -149,6 +149,16 @@ const styles  = StyleSheet.create({
         marginBottom: 20,
         borderRadius: 25,
         backgroundColor: 'white'
+    },
+    sobrePost:{
+        flexDirection: 'row',
+        minWidth: 475
+    },
+    borrarTacho:{
+        marginTop: 20,
+        marginBottom: 20,
+        position: 'absolute',
+        right: 0
     },
     img:{
         width: 500,
